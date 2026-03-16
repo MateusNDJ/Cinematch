@@ -116,3 +116,11 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-5px)}20%,40%,60%,80%{transform:translateX(5px)}}
 .error-msg{color:#ff6b6b;font-size:0.8rem;margin-top:8px;display:none;}
 .error-msg.show{display:block;animation:fadeIn 0.3s;}
+
+.photo-upload{margin-top:12px;}
+.btn-upload{width:100%;padding:10px;border-radius:8px;border:1.5px dashed var(--border);background:transparent;color:var(--subtle);font-size:0.8rem;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-upload:hover{border-color:var(--border-hover);color:var(--text);background:var(--s2);}
+.btn-upload i{font-size:16px;}
+.photo-preview{margin-top:10px;display:none;}
+.photo-preview.show{display:block;}
+.photo-preview img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border);}

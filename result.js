@@ -7,7 +7,7 @@ const GI={'28':'ph-sword','35':'ph-smiley','18':'ph-mask-sad','27':'ph-skull','1
 const data=JSON.parse(localStorage.getItem('cinematchResult')||'{}');
 if(!data.p1){window.location.href='index.html';}
 
-const {p1,p2,g1,g2,pct}=data;
+const {p1,p2,g1,g2,pct,photo1,photo2}=data;
 
 document.getElementById('av1').textContent=p1[0].toUpperCase();
 document.getElementById('av2').textContent=p2[0].toUpperCase();
@@ -17,6 +17,32 @@ document.getElementById('gav1').textContent=p1[0].toUpperCase();
 document.getElementById('gav2').textContent=p2[0].toUpperCase();
 document.getElementById('gp1').textContent=p1;
 document.getElementById('gp2').textContent=p2;
+
+// Adiciona fotos personalizadas se existirem
+if(photo1){
+  const av1=document.getElementById('av1');
+  av1.style.backgroundImage='url('+photo1+')';
+  av1.style.backgroundSize='cover';
+  av1.style.backgroundPosition='center';
+  av1.textContent='';
+  const gav1=document.getElementById('gav1');
+  gav1.style.backgroundImage='url('+photo1+')';
+  gav1.style.backgroundSize='cover';
+  gav1.style.backgroundPosition='center';
+  gav1.textContent='';
+}
+if(photo2){
+  const av2=document.getElementById('av2');
+  av2.style.backgroundImage='url('+photo2+')';
+  av2.style.backgroundSize='cover';
+  av2.style.backgroundPosition='center';
+  av2.textContent='';
+  const gav2=document.getElementById('gav2');
+  gav2.style.backgroundImage='url('+photo2+')';
+  gav2.style.backgroundSize='cover';
+  gav2.style.backgroundPosition='center';
+  gav2.textContent='';
+}
 
 const msg=pct>=80?'Voces sao feitos um para o outro':pct>=60?'Otima combinacao cinematografica':pct>=40?'Gostos diferentes, mas isso e bom':'Opostos se atraem no cinema';
 document.getElementById('cmsg').textContent=msg;

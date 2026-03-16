@@ -27,15 +27,29 @@
 
     <div class='step active' id='s1'>
       <div class='step-title'>Quem vai jogar?</div>
-      <div class='step-desc'>Digite os nomes do casal para comecar</div>
+      <div class='step-desc'>Digite os nomes do casal e adicione fotos (opcional)</div>
       <div class='field'>
         <div class='field-label lp1'><i class='ph ph-user-circle'></i> Pessoa 1</div>
         <input class='input' id='n1' type='text' placeholder='Nome da primeira pessoa'>
+        <div class='photo-upload'>
+          <input type='file' id='photo1' accept='image/*' style='display:none' onchange='handlePhoto(1)'>
+          <button class='btn-upload' onclick='document.getElementById("photo1").click()'>
+            <i class='ph ph-camera'></i> Adicionar foto (opcional)
+          </button>
+          <div class='photo-preview' id='preview1'></div>
+        </div>
       </div>
       <div class='sep'><div class='sep-line'></div><span class='sep-text'>E</span><div class='sep-line'></div></div>
       <div class='field'>
         <div class='field-label lp2'><i class='ph ph-user-circle'></i> Pessoa 2</div>
         <input class='input' id='n2' type='text' placeholder='Nome da segunda pessoa'>
+        <div class='photo-upload'>
+          <input type='file' id='photo2' accept='image/*' style='display:none' onchange='handlePhoto(2)'>
+          <button class='btn-upload' onclick='document.getElementById("photo2").click()'>
+            <i class='ph ph-camera'></i> Adicionar foto (opcional)
+          </button>
+          <div class='photo-preview' id='preview2'></div>
+        </div>
       </div>
       <button class='btn btn-grad mt' onclick='initNames()'>Comecar <i class='ph ph-arrow-right'></i></button>
     </div>

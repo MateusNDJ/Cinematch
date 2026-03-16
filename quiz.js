@@ -25,6 +25,27 @@ const QUESTIONS=[
 
 const PROG_LABELS=['Inicio','Generos','Perguntas','Generos','Perguntas'];
 let sg1=[],sg2=[],a1={},a2={},n1='',n2='';
+let photo1Data='',photo2Data='';
+
+function handlePhoto(person){
+  const input=document.getElementById('photo'+person);
+  const preview=document.getElementById('preview'+person);
+  const file=input.files[0];
+  
+  if(file){
+    const reader=new FileReader();
+    reader.onload=function(e){
+      if(person===1){
+        photo1Data=e.target.result;
+      }else{
+        photo2Data=e.target.result;
+      }
+      preview.innerHTML='<img src="'+e.target.result+'" alt="Foto '+person+'">';
+      preview.classList.add('show');
+    };
+    reader.readAsDataURL(file);
+  }
+}
 
 function setStep(s){
   document.getElementById('prog').style.width=(s/5*100)+'%';
@@ -154,7 +175,7 @@ function submit(){
   }
   
   const pct=calculateCompatibility(sg1,sg2);
-  resultData={p1:n1,p2:n2,g1:sg1,g2:sg2,pct:pct};
+  resultData={p1:n1,p2:n2,g1:sg1,g2:sg2,pct:pct,photo1:photo1Data,photo2:photo2Data};
   
   document.getElementById('mav1').textContent=n1[0].toUpperCase();
   document.getElementById('mav2').textContent=n2[0].toUpperCase();

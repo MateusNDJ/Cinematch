@@ -38,8 +38,19 @@ function show(id){
 }
 
 function initNames(){
-  n1=document.getElementById('n1').value.trim()||'Pessoa 1';
-  n2=document.getElementById('n2').value.trim()||'Pessoa 2';
+  const input1=document.getElementById('n1').value.trim();
+  const input2=document.getElementById('n2').value.trim();
+  
+  if(!input1 || !input2){
+    const card=document.getElementById('s1');
+    card.classList.add('shake');
+    setTimeout(()=>card.classList.remove('shake'),500);
+    alert('⚠️ Por favor, digite os nomes das duas pessoas para começar!');
+    return;
+  }
+  
+  n1=input1;
+  n2=input2;
   document.querySelectorAll('.pname1').forEach(e=>e.textContent=n1);
   document.querySelectorAll('.pname2').forEach(e=>e.textContent=n2);
   ['av1','av1b'].forEach(id=>document.getElementById(id).textContent=n1[0].toUpperCase());
@@ -80,9 +91,45 @@ function selOpt(btn,cid,qi,cls){
   btn.classList.add(cls==='sp1'?'op1':'op2');
 }
 
-function toQ1(){if(!sg1.length){alert('Selecione pelo menos 1 genero!');return;}buildQuestions('qq1','sp1');show('s3');setStep(3);}
-function toG2(){buildGenres('gg2',sg2,'sp2','gg2c');show('s4');setStep(4);}
-function toQ2(){if(!sg2.length){alert('Selecione pelo menos 1 genero!');return;}buildQuestions('qq2','sp2');show('s5');setStep(5);}
+function toQ1(){
+  if(!sg1.length){
+    const card=document.getElementById('s2');
+    card.classList.add('shake');
+    setTimeout(()=>card.classList.remove('shake'),500);
+    alert('⚠️ Selecione pelo menos 1 gênero para continuar!');
+    return;
+  }
+  buildQuestions('qq1','sp1');
+  show('s3');
+  setStep(3);
+}
+
+function toG2(){
+  const answered = document.querySelectorAll('#qq1 .q-opt.op1').length;
+  if(answered < QUESTIONS.length){
+    const card=document.getElementById('s3');
+    card.classList.add('shake');
+    setTimeout(()=>card.classList.remove('shake'),500);
+    alert('⚠️ Por favor, responda todas as ' + QUESTIONS.length + ' perguntas antes de continuar!\n\nVocê respondeu: ' + answered + '/' + QUESTIONS.length);
+    return;
+  }
+  buildGenres('gg2',sg2,'sp2','gg2c');
+  show('s4');
+  setStep(4);
+}
+
+function toQ2(){
+  if(!sg2.length){
+    const card=document.getElementById('s4');
+    card.classList.add('shake');
+    setTimeout(()=>card.classList.remove('shake'),500);
+    alert('⚠️ Selecione pelo menos 1 gênero para continuar!');
+    return;
+  }
+  buildQuestions('qq2','sp2');
+  show('s5');
+  setStep(5);
+}
 
 let resultData={};
 
@@ -97,6 +144,15 @@ function calculateCompatibility(g1,g2){
 }
 
 function submit(){
+  const answered = document.querySelectorAll('#qq2 .q-opt.op2').length;
+  if(answered < QUESTIONS.length){
+    const card=document.getElementById('s5');
+    card.classList.add('shake');
+    setTimeout(()=>card.classList.remove('shake'),500);
+    alert('⚠️ Por favor, responda todas as ' + QUESTIONS.length + ' perguntas antes de ver o resultado!\n\nVocê respondeu: ' + answered + '/' + QUESTIONS.length);
+    return;
+  }
+  
   const pct=calculateCompatibility(sg1,sg2);
   resultData={p1:n1,p2:n2,g1:sg1,g2:sg2,pct:pct};
   

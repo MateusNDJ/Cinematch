@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>CineMatch</title>
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap' rel='stylesheet'>
+<script src='https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js'></script>
+<link rel='stylesheet' href='styles.css'>
+</head>
+<body>
+<div class='glow glow-a'></div>
+<div class='glow glow-b'></div>
+<div class='page'>
+  <div class='brand'>
+    <div class='brand-icon'><i class='ph ph-film-slate'></i></div>
+    <div class='brand-name'>CineMatch</div>
+    <div class='brand-sub'>Compatibilidade cinematografica do casal</div>
+  </div>
+  <div class='card'>
+    <div class='prog-wrap'>
+      <div class='prog-meta'><span class='prog-label' id='prog-lbl'>Inicio</span><span class='prog-steps' id='prog-steps'>1 / 5</span></div>
+      <div class='prog-track'><div class='prog-fill' id='prog' style='width:20%'></div></div>
+    </div>
+
+    <div class='step active' id='s1'>
+      <div class='step-title'>Quem vai jogar?</div>
+      <div class='step-desc'>Digite os nomes do casal para comecar</div>
+      <div class='field'>
+        <div class='field-label lp1'><i class='ph ph-user-circle'></i> Pessoa 1</div>
+        <input class='input' id='n1' type='text' placeholder='Nome da primeira pessoa'>
+      </div>
+      <div class='sep'><div class='sep-line'></div><span class='sep-text'>E</span><div class='sep-line'></div></div>
+      <div class='field'>
+        <div class='field-label lp2'><i class='ph ph-user-circle'></i> Pessoa 2</div>
+        <input class='input' id='n2' type='text' placeholder='Nome da segunda pessoa'>
+      </div>
+      <button class='btn btn-grad mt' onclick='initNames()'>Comecar <i class='ph ph-arrow-right'></i></button>
+    </div>
+
+    <div class='step' id='s2'>
+      <div class='player-bar bar-p1'><div class='bar-av' id='av1'>A</div><div class='bar-info'><div class='bar-name pname1'>Pessoa 1</div><div class='bar-hint'>Escolha seus generos favoritos</div></div><div class='bar-dot'></div></div>
+      <div class='step-title'>Generos favoritos</div>
+      <div class='step-desc'>Selecione ate 4 generos que voce mais curte</div>
+      <div class='sel-hint' id='gg1c'>0 / 4 selecionados</div>
+      <div class='genres-grid' id='gg1'></div>
+      <button class='btn btn-p1' onclick='toQ1()'>Proximo <i class='ph ph-arrow-right'></i></button>
+    </div>
+
+    <div class='step' id='s3'>
+      <div class='player-bar bar-p1'><div class='bar-av' id='av1b'>A</div><div class='bar-info'><div class='bar-name pname1'>Pessoa 1</div><div class='bar-hint'>Responda as perguntas abaixo</div></div><div class='bar-dot'></div></div>
+      <div class='step-title'>Suas preferencias</div>
+      <div class='step-desc'>Seja honesto — isso afeta a compatibilidade</div>
+      <div id='qq1'></div>
+      <button class='btn btn-p1 mt' onclick='toG2()'>Proximo <i class='ph ph-arrow-right'></i></button>
+    </div>
+
+    <div class='step' id='s4'>
+      <div class='player-bar bar-p2'><div class='bar-av' id='av2'>B</div><div class='bar-info'><div class='bar-name pname2'>Pessoa 2</div><div class='bar-hint'>Escolha seus generos favoritos</div></div><div class='bar-dot'></div></div>
+      <div class='step-title'>Generos favoritos</div>
+      <div class='step-desc'>Selecione ate 4 generos que voce mais curte</div>
+      <div class='sel-hint' id='gg2c'>0 / 4 selecionados</div>
+      <div class='genres-grid' id='gg2'></div>
+      <button class='btn btn-p2' onclick='toQ2()'>Proximo <i class='ph ph-arrow-right'></i></button>
+    </div>
+
+    <div class='step' id='s5'>
+      <div class='player-bar bar-p2'><div class='bar-av' id='av2b'>B</div><div class='bar-info'><div class='bar-name pname2'>Pessoa 2</div><div class='bar-hint'>Ultima etapa — quase la!</div></div><div class='bar-dot'></div></div>
+      <div class='step-title'>Suas preferencias</div>
+      <div class='step-desc'>Responda com sinceridade</div>
+      <div id='qq2'></div>
+      <button class='btn btn-p2 mt' onclick='submit()'>Ver Resultado <i class='ph ph-sparkle'></i></button>
+    </div>
+  </div>
+</div>
+
+<div class='modal-overlay' id='modal'>
+  <div class='modal-box'>
+    <div class='modal-avatars'>
+      <div class='modal-av mav1 loading' id='mav1'>A</div>
+      <div class='modal-heart'><i class='ph ph-heart-fill'></i></div>
+      <div class='modal-av mav2 loading' id='mav2'>B</div>
+    </div>
+    <div class='modal-title' id='mtitle'>Calculando compatibilidade...</div>
+    <div class='modal-subtitle' id='msub'>Analisando suas respostas</div>
+    <div class='modal-pct' id='mpct'>0%</div>
+    <div class='modal-msg' id='mmsg'></div>
+    <button class='modal-btn' id='mbtn' onclick='goToResult()'>Ver Detalhes Completos</button>
+  </div>
+</div>
+
+<script src='quiz.js'></script>
+</body>
+</html>

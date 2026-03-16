@@ -177,8 +177,28 @@ function submit(){
   const pct=calculateCompatibility(sg1,sg2);
   resultData={p1:n1,p2:n2,g1:sg1,g2:sg2,pct:pct,photo1:photo1Data,photo2:photo2Data};
   
-  document.getElementById('mav1').textContent=n1[0].toUpperCase();
-  document.getElementById('mav2').textContent=n2[0].toUpperCase();
+  const mav1=document.getElementById('mav1');
+  const mav2=document.getElementById('mav2');
+  
+  // Adiciona fotos ou iniciais nos avatares do modal
+  if(photo1Data){
+    mav1.style.backgroundImage='url('+photo1Data+')';
+    mav1.style.backgroundSize='cover';
+    mav1.style.backgroundPosition='center';
+    mav1.textContent='';
+  }else{
+    mav1.textContent=n1[0].toUpperCase();
+  }
+  
+  if(photo2Data){
+    mav2.style.backgroundImage='url('+photo2Data+')';
+    mav2.style.backgroundSize='cover';
+    mav2.style.backgroundPosition='center';
+    mav2.textContent='';
+  }else{
+    mav2.textContent=n2[0].toUpperCase();
+  }
+  
   document.getElementById('modal').classList.add('show');
   
   setTimeout(()=>{

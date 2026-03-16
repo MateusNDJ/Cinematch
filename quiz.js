@@ -74,8 +74,32 @@ function initNames(){
   n2=input2;
   document.querySelectorAll('.pname1').forEach(e=>e.textContent=n1);
   document.querySelectorAll('.pname2').forEach(e=>e.textContent=n2);
-  ['av1','av1b'].forEach(id=>document.getElementById(id).textContent=n1[0].toUpperCase());
-  ['av2','av2b'].forEach(id=>document.getElementById(id).textContent=n2[0].toUpperCase());
+  
+  // Atualiza todos os avatares com foto ou inicial
+  ['av1','av1b'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(photo1Data){
+      el.style.backgroundImage='url('+photo1Data+')';
+      el.style.backgroundSize='cover';
+      el.style.backgroundPosition='center';
+      el.textContent='';
+    }else{
+      el.textContent=n1[0].toUpperCase();
+    }
+  });
+  
+  ['av2','av2b'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(photo2Data){
+      el.style.backgroundImage='url('+photo2Data+')';
+      el.style.backgroundSize='cover';
+      el.style.backgroundPosition='center';
+      el.textContent='';
+    }else{
+      el.textContent=n2[0].toUpperCase();
+    }
+  });
+  
   buildGenres('gg1',sg1,'sp1','gg1c');show('s2');setStep(2);
 }
 
